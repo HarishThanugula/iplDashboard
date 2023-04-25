@@ -11,16 +11,8 @@ class TeamMatches extends Component {
     this.fetchTeamMatchData()
   }
 
-  fetchTeamMatchData = async () => {
-    const {match} = this.props
-    console.log(match)
-    const {params} = match
-    console.log(params)
-    const {id} = params
-
-    const response = await fetch(`https://apis.ccbp.in/ipl/${id}`)
-    const data = await response.json()
-    console.log(data)
+  fetchTeamMatchData = () => {
+    console.log(this.props)
   }
 
   render() {
