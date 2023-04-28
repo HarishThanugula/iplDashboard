@@ -1,1 +1,52 @@
-/* Write your CSS here */
+.match-container {
+  background-color: #1e293b;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.match-details {
+  color: white;
+  width: 33%;
+  margin-right: 10px;
+}
+.team-name {
+  font-size: 18px;
+  font-family: 'Roboto';
+  margin-bottom: 25px;
+}
+.date {
+  font-size: 12px;
+  font-family: Bree Serif;
+  margin-bottom: 18px;
+}
+.detail {
+  font-size: 8px;
+  font-family: Bree Serif;
+  margin-bottom: 20px;
+  color: white;
+}
+.img-container {
+  width: 33%;
+}
+.team-logo {
+  width: 200px;
+}
+.heading {
+  font-size: 13px;
+  font-family: Bree Serif;
+  margin-bottom: 18px;
+  color: white;
+  margin-bottom: 0px;
+}
+.about-container {
+  width: 33%;
+  text-align: end;
+}
+.details {
+  font-size: 8px;
+  font-family: Bree Serif;
+  margin-bottom: 20px;
+  color: white;
+}

@@ -1,1 +1,33 @@
-/* Write your CSS here */
+.matchCard-container {
+  background-color: #1e293b;
+  border-radius: 5px;
+  width: 175px;
+  list-style-type: none;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  height: 300px;
+}
+.image {
+  width: 75px;
+  margin-bottom: 10px;
+}
+.name {
+  color: white;
+  font-size: 16px;
+  font-family: bree serif;
+}
+.result {
+  color: white;
+  font-family: bree serif;
+  font-size: 12px;
+}
+.result-status {
+  color: white;
+  font-family: bree serif;
+  font-size: 12px;
+}
