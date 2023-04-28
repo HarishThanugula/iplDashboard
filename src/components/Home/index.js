@@ -1,57 +1,71 @@
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
-import './index.css'
+
 import TeamCard from '../TeamCard'
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
+
+import './index.css'
+
+const teamsApiUrl = 'https://apis.ccbp.in/ipl'
 
 class Home extends Component {
   state = {
-    teamsList: [],
-    isLoader: true,
+    isLoading: true,
+    teamsData: [],
   }
 
   componentDidMount() {
-    this.fetchDashBoardData()
+    this.getTeams()
   }
 
-  fetchDashBoardData = async () => {
-    const response = await fetch('https://apis.ccbp.in/ipl')
-    const fetchData = await response.json()
-    console.log(fetchData)
-
-    const updatedData = fetchData.teams.map(eachTeam => ({
-      name: eachTeam.name,
-      id: eachTeam.id,
-      teamImgUrl: eachTeam.team_image_url,
+  getTeams = async () => {
+    const response = await fetch(teamsApiUrl)
+    const fetchedData = await response.json()
+    const formattedData = fetchedData.teams.map(team => ({
+      name: team.name,
+      id: team.id,
+      teamImageURL: team.team_image_url,
     }))
 
-    this.setState({teamsList: updatedData, isLoader: false})
+    this.setState({
+      teamsData: formattedData,
+      isLoading: false,
+    })
   }
 
-  render() {
-    const {teamsList, isLoader} = this.state
+  renderTeamsList = () => {
+    const {teamsData} = this.state
 
     return (
-      <div className="bg-container">
-        {isLoader ? (
-          <div data-testid="loader">
-            <Loader type="Oval" color="#ffffff" height={50} width={50} />
-          </div>
-        ) : (
-          <div className="heading-container">
+      <ul className="teams-list">
+        {teamsData.map(eachTeam => (
+          <TeamCard teamDetails={eachTeam} key={eachTeam.id} />
+        ))}
+      </ul>
+    )
+  }
+
+  renderLoader = () => (
+    <div className="loader-container" data-testId="loader">
+      <Loader type="Oval" color="#ffffff" height={50} />
+    </div>
+  )
+
+  render() {
+    const {isLoading} = this.state
+
+    return (
+      <div className="home-route-container">
+        <div className="teams-list-container">
+          <div className="ipl-dashboard-heading-container">
             <img
               src="https://assets.ccbp.in/frontend/react-js/ipl-logo-img.png"
               alt="ipl logo"
-              className="main-logo"
+              className="ipl-logo"
             />
-            <h1 className="main-heading">IPL Dashboard</h1>
+            <h1 className="ipl-dashboard-heading">IPL Dashboard</h1>
           </div>
-        )}
-        <ul className="teamCard-container">
-          {teamsList.map(eachTeam => (
-            <TeamCard eachTeamDetails={eachTeam} key={eachTeam.id} />
-          ))}
-        </ul>
+          {isLoading ? this.renderLoader() : this.renderTeamsList()}
+        </div>
       </div>
     )
   }
